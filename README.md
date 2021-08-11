@@ -13,3 +13,7 @@ python script.py "PyBites\nDev Tools\nTraining"
 ... creates this image in the `images/` output folder:
 
 ![example output image](images/example.png)
+
+---
+
+Special shoutout to [Sarah Gencarelli](https://www.pybitespodcast.com/1501156/8128624-017-the-importance-of-creativity-as-a-developer) for the awesome thumbnail base template design!
