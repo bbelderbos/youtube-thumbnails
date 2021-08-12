@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 BACKGROUND_IMG = "base-thumbnail.png"
 OUTPUT_DIR = "images"
-NOTO_SERIF = 'NotoSerif-Italic.ttf'
+FONT_FILE = 'Roboto-Light.ttf'
 START_OFFSET_TEXT = (650, 150)
 TEXT_COLOR = (255, 255, 255, 255)
 LINE_SPACING = 120
@@ -15,7 +15,7 @@ NEW_LINE = "\\n"
 
 
 def _add_text(image, base, text, offset,
-              fontfile=NOTO_SERIF,
+              fontfile=FONT_FILE,
               font_size=100):
     """Adds text on the image canvas"""
     font = ImageFont.truetype(fontfile, font_size)
