@@ -1,7 +1,7 @@
 import os
 from pathlib import Path
 import re
-from string import ascii_lowercase
+from string import ascii_lowercase, digits
 import sys
 
 from dotenv import load_dotenv
@@ -12,10 +12,10 @@ load_dotenv()
 BACKGROUND_IMG = os.environ["THUMB_BACKGROUND_IMAGE"]
 OUTPUT_DIR = "images"
 FONT_FILE = os.environ["THUMB_FONT_TTF_FILE"]
-START_OFFSET_TEXT = (650, 150)
+START_OFFSET_TEXT = (650, 160)
 TEXT_COLOR = (255, 255, 255, 255)
-LINE_SPACING = 120
-NEW_LINE = "\\n"
+LINE_SPACING = 140
+SEPARATOR = "|"
 
 
 def _add_text(image, base, text, offset,
@@ -28,8 +28,8 @@ def _add_text(image, base, text, offset,
 
 
 def _create_output_file_name(text):
-    fname = text.replace(NEW_LINE, " ")
-    fname = re.sub(f"[^{ascii_lowercase}]", "-", fname.lower())
+    fname = text.replace(SEPARATOR, " ")
+    fname = re.sub(f"[^{ascii_lowercase + digits}]", "-", fname.lower())
     fname = f"{fname}.png"
     return fname
 
@@ -40,7 +40,7 @@ def create_thumbnail(text, template=BACKGROUND_IMG):
 
     offset = START_OFFSET_TEXT
 
-    for i, line in enumerate(text.split(NEW_LINE)):
+    for i, line in enumerate(text.split(SEPARATOR)):
         left, top = offset
         top += i * LINE_SPACING
         _add_text(image, base, line, (left, top))

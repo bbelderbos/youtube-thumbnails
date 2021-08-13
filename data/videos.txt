@@ -1,0 +1,27 @@
+Python|Built-in|Functions
+Python|Developer|Tools
+Small|Refactoring|Example
+Pytest|Fixtures|Intro
+Beating|Imposter|Syndrome
+PyBites|Developer|Workshop
+Git|Tricks|Training
+PyBites|Poetry|Training
+PyBites|Platform|Intro
+Namedtuples|==|Pythonic
+Understanding|Python|Listcomps
+Bite|Authoring|Instruction
+Platform|Pytest|Functionality
+Beautiful|Code|Snippets
+PyBites|Platform|Intro
+Platform|Interview|Tier
+Selenium|Testing|Demo
+Hacktober|Pull Request|Howto
+NBA|Data|Challenge
+GitHub|Pull Request|Instruction
+Platform|Enterprise|Tier
+Presenting|PyBites|Karmabot
+Become|a PyBites|Ninja
+How to|Solve|Bite #21
+Platform|100 Days|Tracker
+Platform|Usage|Demo
+PyBites|Platform|Dashboard

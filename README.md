@@ -13,10 +13,10 @@ pip install -r requirements.txt
 
 ## Usage
 
-To start simple the script relies on short titles it splits by newline, for example:
+To start simple the script relies on short titles it splits by a pipe character, for example:
 
 ```
-python thumbs.py "PyBites\nDev Tools\nTraining"
+python thumbs.py "PyBites|Marketing|Training"
 ```
 
 ... creates this image in the `images/` output folder:
