@@ -16,7 +16,7 @@ pip install -r requirements.txt
 To start simple the script relies on short titles it splits by newline, for example:
 
 ```
-python script.py "PyBites\nDev Tools\nTraining"
+python thumbs.py "PyBites\nDev Tools\nTraining"
 ```
 
 ... creates this image in the `images/` output folder:
