@@ -7,7 +7,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 BACKGROUND_IMG = "base-thumbnail.png"
 OUTPUT_DIR = "images"
-FONT_FILE = 'Roboto-Light.ttf'
+FONT_FILE = Path('fonts') / 'Berlin-Sans-FB-Regular.ttf'
 START_OFFSET_TEXT = (650, 150)
 TEXT_COLOR = (255, 255, 255, 255)
 LINE_SPACING = 120
@@ -18,7 +18,7 @@ def _add_text(image, base, text, offset,
               fontfile=FONT_FILE,
               font_size=100):
     """Adds text on the image canvas"""
-    font = ImageFont.truetype(fontfile, font_size)
+    font = ImageFont.truetype(str(fontfile), font_size)
     draw_context = ImageDraw.Draw(image)
     draw_context.text(offset, text, font=font, fill=TEXT_COLOR)
 
