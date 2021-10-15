@@ -14,24 +14,36 @@ if not OUTPUT_DIR.exists():
 
 TEXT_COLOR = (0, 0, 0, 255)
 
+# TODO: this is not scalable but works for now
+replacements = ["software planning", "decision fatigue",
+                "Creativity as a Developer", "with Andrew", "to Open",
+                "the Classroom", "COVID World", "Ryan Austin",
+                "content provider", "Marketer to", "Partners",
+                "Software Architect"]
 
-def _get_titles():
-    return sorted(
+
+def get_titles():
+    titles = sorted(
         entry.title.replace("-", "|")
         for entry in feedparser.parse(PYBITES_FEED)["entries"]
         if entry.title.startswith("#")
     )
+    for title in titles:
+        for term in replacements:
+            title = title.replace(term, f"| {term}")
+        yield title
 
 
 def main():
-    titles = _get_titles()
-    for title in titles[:2]:
+    titles = list(get_titles())
+    for title in titles:
         print(title)
         create_thumbnail(title, template=TEMPLATE_IMG,
                          output_dir=OUTPUT_DIR,
-                         font_size=80,
+                         font_size=50,
                          text_color=TEXT_COLOR,
-                         start_offset=(50, 50))
+                         start_offset=(50, 100),
+                         line_spacing=70)
 
 
 if __name__ == "__main__":

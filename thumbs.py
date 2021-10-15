@@ -31,14 +31,15 @@ def create_thumbnail(text,
                      fontfile=FONT_FILE,
                      font_size=100,
                      text_color=TEXT_COLOR,
-                     start_offset=START_OFFSET_TEXT):
+                     start_offset=START_OFFSET_TEXT,
+                     line_spacing=LINE_SPACING):
     base = Image.open(template).convert('RGBA')
     image = Image.new('RGBA', base.size)
     offset = start_offset
 
     for i, line in enumerate(text.split(SEPARATOR)):
         left, top = offset
-        top += i * LINE_SPACING
+        top += i * line_spacing
         font = ImageFont.truetype(fontfile, font_size)
         draw_context = ImageDraw.Draw(image)
         new_offset = (left, top)
