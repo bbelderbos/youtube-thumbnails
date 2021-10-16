@@ -13,13 +13,7 @@ if not OUTPUT_DIR.exists():
     os.mkdir(OUTPUT_DIR)
 
 TEXT_COLOR = (0, 0, 0, 255)
-
-# TODO: this is not scalable but works for now
-replacements = ["software planning", "decision fatigue",
-                "Creativity as a Developer", "with Andrew", "to Open",
-                "the Classroom", "COVID World", "Ryan Austin",
-                "content provider", "Marketer to", "Partners",
-                "Software Architect"]
+MAX_LEN = 60
 
 
 def get_titles():
@@ -29,8 +23,12 @@ def get_titles():
         if entry.title.startswith("#")
     )
     for title in titles:
-        for term in replacements:
-            title = title.replace(term, f"| {term}")
+        # for long titles we need an extra newline (enforced by "|")
+        if len(title) > MAX_LEN:
+            index_last_space = title[:MAX_LEN].rfind(" ")
+            first_line = title[:index_last_space]
+            second_line = title[index_last_space:]
+            title = f"{first_line}|{second_line}"
         yield title
 
 
