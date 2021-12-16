@@ -2,6 +2,7 @@
 venv
 images/*
 !images/example.png
+!images/podcast-template.png
 fonts/*
 !fonts/Roboto-Light.ttf
 venv
