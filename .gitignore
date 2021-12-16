@@ -4,3 +4,4 @@ images/*
 !images/example.png
 fonts/*
 !fonts/Roboto-Light.ttf
+venv
