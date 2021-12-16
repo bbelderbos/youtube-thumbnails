@@ -19,7 +19,7 @@ SEPARATOR = "|"
 
 
 def _create_output_file_name(text):
-    fname = text.replace(SEPARATOR, " ")
+    fname = text.lstrip("#").replace(f" {SEPARATOR} ", " ")
     fname = re.sub(f"[^{ascii_lowercase + digits}]", "-", fname.lower())
     fname = f"{fname}.png"
     return fname
