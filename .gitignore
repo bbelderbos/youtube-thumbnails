@@ -1,4 +1,5 @@
 .env
+venv
 images/*
 !images/example.png
 fonts/*
