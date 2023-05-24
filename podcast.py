@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+import sys
 
 import feedparser
 
@@ -17,11 +18,17 @@ MAX_LEN = 60
 
 
 def get_titles():
-    titles = sorted(
-        entry.title.replace("-", "|")
-        for entry in feedparser.parse(PYBITES_FEED)["entries"]
-        if entry.title.startswith("#")
+    """Get podcast titles, newest first"""
+    entries = sorted(
+        feedparser.parse(PYBITES_FEED)["entries"],
+        key=lambda x: x.published_parsed,
+        reverse=True,
     )
+    titles = [
+        entry.title.replace("-", "|")
+        for entry in entries
+        if entry.title.startswith("#")
+    ]
     for title in titles:
         # for long titles we need an extra newline (enforced by "|")
         if len(title) > MAX_LEN:
@@ -32,9 +39,9 @@ def get_titles():
         yield title
 
 
-def main():
+def main(max_num_images=None):
     titles = list(get_titles())
-    for title in titles:
+    for i, title in enumerate(titles, start=1):
         print(title)
         create_thumbnail(title, template=TEMPLATE_IMG,
                          output_dir=OUTPUT_DIR,
@@ -42,7 +49,13 @@ def main():
                          text_color=TEXT_COLOR,
                          start_offset=(50, 100),
                          line_spacing=70)
+        if max_num_images is not None and max_num_images == i:
+            break
 
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) == 2:
+        max_num_images = int(sys.argv[1])
+        main(max_num_images)
+    else:
+        main()
