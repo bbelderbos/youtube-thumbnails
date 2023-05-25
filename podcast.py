@@ -40,31 +40,49 @@ def get_titles():
         yield title
 
 
-def main(max_num_images=None, podcast_title=None):
+def main(max_num_images=None, podcast_title=None, dry_run=False):
     if podcast_title is not None:
         titles = [podcast_title]
     else:
         titles = list(get_titles())
 
     for i, title in enumerate(titles, start=1):
-        create_thumbnail(title, template=TEMPLATE_IMG,
-                         output_dir=OUTPUT_DIR,
-                         font_size=50,
-                         text_color=TEXT_COLOR,
-                         start_offset=(50, 100),
-                         line_spacing=70)
+        if dry_run:
+            print(title)
+        else:
+            create_thumbnail(
+                title,
+                template=TEMPLATE_IMG,
+                output_dir=OUTPUT_DIR,
+                font_size=50,
+                text_color=TEXT_COLOR,
+                start_offset=(50, 100),
+                line_spacing=70,
+            )
         if max_num_images is not None and max_num_images == i:
             break
 
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description='Make podcast YouTube thumb images.')
+    parser = argparse.ArgumentParser(description="Make podcast YouTube thumb images.")
     group = parser.add_mutually_exclusive_group(required=True)
 
-    group.add_argument('-n', '--max_num_images', type=int,
-                        help='The maximum number of images working from feed.')
-    group.add_argument('-t-', '--podcast_title', type=str,
-                        help='The title of the podcast.')
+    group.add_argument(
+        "-n",
+        "--max_num_images",
+        type=int,
+        help="The maximum number of images working from feed.",
+    )
+    group.add_argument(
+        "-t-", "--podcast_title", type=str, help="The title of the podcast."
+    )
+
+    parser.add_argument(
+        "-d",
+        "--dry_run",
+        action="store_true",
+        help="Perform a dry run without executing the main function.",
+    )
 
     args = parser.parse_args()
-    main(args.max_num_images, args.podcast_title)
+    main(args.max_num_images, args.podcast_title, args.dry_run)
