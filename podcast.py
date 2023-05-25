@@ -1,3 +1,4 @@
+import argparse
 import os
 from pathlib import Path
 import sys
@@ -39,10 +40,13 @@ def get_titles():
         yield title
 
 
-def main(max_num_images=None):
-    titles = list(get_titles())
+def main(max_num_images=None, podcast_title=None):
+    if podcast_title is not None:
+        titles = [podcast_title]
+    else:
+        titles = list(get_titles())
+
     for i, title in enumerate(titles, start=1):
-        print(title)
         create_thumbnail(title, template=TEMPLATE_IMG,
                          output_dir=OUTPUT_DIR,
                          font_size=50,
@@ -54,8 +58,13 @@ def main(max_num_images=None):
 
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2:
-        max_num_images = int(sys.argv[1])
-        main(max_num_images)
-    else:
-        main()
+    parser = argparse.ArgumentParser(description='Make podcast YouTube thumb images.')
+    group = parser.add_mutually_exclusive_group(required=True)
+
+    group.add_argument('-n', '--max_num_images', type=int,
+                        help='The maximum number of images working from feed.')
+    group.add_argument('-t-', '--podcast_title', type=str,
+                        help='The title of the podcast.')
+
+    args = parser.parse_args()
+    main(args.max_num_images, args.podcast_title)
