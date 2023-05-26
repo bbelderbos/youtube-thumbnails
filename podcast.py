@@ -19,6 +19,8 @@ MAX_LEN = 60
 
 
 def _wrap_title(title):
+    if title.startswith("#"):
+        title = title.replace("-", "|")
     if len(title) > MAX_LEN:
         index_last_space = title[:MAX_LEN].rfind(" ")
         first_line = title[:index_last_space]
@@ -34,14 +36,9 @@ def get_titles():
         key=lambda x: x.published_parsed,
         reverse=True,
     )
-    titles = [
-        entry.title.replace("-", "|")
-        for entry in entries
-        if entry.title.startswith("#")
-    ]
-    for title in titles:
+    for entry in entries:
         # for long titles we need an extra newline (enforced by "|")
-        title = _wrap_title(title)
+        title = _wrap_title(entry.title)
         yield title
 
 
