@@ -18,6 +18,15 @@ TEXT_COLOR = (0, 0, 0, 255)
 MAX_LEN = 60
 
 
+def _wrap_title(title):
+    if len(title) > MAX_LEN:
+        index_last_space = title[:MAX_LEN].rfind(" ")
+        first_line = title[:index_last_space]
+        second_line = title[index_last_space:]
+        title = f"{first_line}|{second_line}"
+    return title
+
+
 def get_titles():
     """Get podcast titles, newest first"""
     entries = sorted(
@@ -32,17 +41,13 @@ def get_titles():
     ]
     for title in titles:
         # for long titles we need an extra newline (enforced by "|")
-        if len(title) > MAX_LEN:
-            index_last_space = title[:MAX_LEN].rfind(" ")
-            first_line = title[:index_last_space]
-            second_line = title[index_last_space:]
-            title = f"{first_line}|{second_line}"
+        title = _wrap_title(title)
         yield title
 
 
 def main(max_num_images=None, podcast_title=None, dry_run=False):
     if podcast_title is not None:
-        titles = [podcast_title]
+        titles = [_wrap_title(podcast_title)]
     else:
         titles = list(get_titles())
 
