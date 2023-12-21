@@ -9,9 +9,9 @@ from PIL import Image, ImageDraw, ImageFont
 
 load_dotenv()
 
-BACKGROUND_IMG = os.environ["THUMB_BACKGROUND_IMAGE"]
+BACKGROUND_IMG = os.environ.get("THUMB_BACKGROUND_IMAGE", "images/example.png")
+FONT_FILE = os.environ.get("THUMB_FONT_TTF_FILE", "fonts/Roboto-Light.ttf")
 OUTPUT_DIR = "images"
-FONT_FILE = os.environ["THUMB_FONT_TTF_FILE"]
 START_OFFSET_TEXT = (650, 160)
 TEXT_COLOR = (255, 255, 255, 255)
 LINE_SPACING = 140
