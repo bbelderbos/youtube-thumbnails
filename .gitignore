@@ -164,7 +164,7 @@ images/*
 !images/podcast-template.png
 
 fonts/*
-!fonts/Roboto-Light.ttf
+!fonts/Roboto-*.ttf
 
 .DS_Store
 
