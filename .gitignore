@@ -160,8 +160,9 @@ cython_debug/
 #.idea/
 
 images/*
-!images/example.png
+!images/thumb-template.png
 !images/podcast-template.png
+!images/pybites-marketing-training.png
 
 fonts/*
 !fonts/Roboto-*.ttf

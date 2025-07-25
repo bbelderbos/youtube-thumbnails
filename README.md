@@ -22,7 +22,7 @@ uv run thumbs.py "PyBites|Marketing|Training"
 
 ... creates this image in the `images/` output folder:
 
-![example output image](images/example.png)
+![example output image](images/pybites-marketing-training.png)
 
 ---
 

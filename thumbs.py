@@ -9,7 +9,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 load_dotenv()
 
-BACKGROUND_IMG = os.environ.get("THUMB_BACKGROUND_IMAGE", "images/example.png")
+BACKGROUND_IMG = os.environ.get("THUMB_BACKGROUND_IMAGE", "images/thumb-template.png")
 FONT_FILE = os.environ.get("THUMB_FONT_TTF_FILE", "fonts/Roboto-Medium.ttf")
 OUTPUT_DIR = "images"
 START_OFFSET_TEXT = (650, 160)
