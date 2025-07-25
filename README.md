@@ -4,11 +4,12 @@ Simple script that uses [Pillow](https://pillow.readthedocs.io/en/stable/) to ge
 
 ## Setup
 
-Make a virtual environment, enable it and install `Pillow`:
+Clone the repo and use uv:
 
 ```
-python3.9 -m venv venv && source venv/bin/activate
-pip install -r requirements.txt
+git clone git@github.com:bbelderbos/youtube-thumbnails.git
+cd youtube-thumbnails
+uv sync
 ```
 
 ## Usage
@@ -16,7 +17,7 @@ pip install -r requirements.txt
 To start simple the script relies on short titles it splits by a pipe character, for example:
 
 ```
-python thumbs.py "PyBites|Marketing|Training"
+uv run thumbs.py "PyBites|Marketing|Training"
 ```
 
 ... creates this image in the `images/` output folder:
